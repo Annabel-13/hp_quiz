@@ -8,6 +8,7 @@ type Question = {
         // other properties...
     };
     // question: TextOrString;
+    // text: string;
     answer: string[];
     userAnswer: AnswerObj | undefined;
     callback: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -15,11 +16,10 @@ type Question = {
     totalQuestions: number;
 }
 
-// type TextOrString = string | {
-//     text: string;
-//     otherProperties: any;
-// };
-
+ // type TextOrString = string | {
+ //     text: string;
+ //     otherProperties: any;
+ // };
 const QuestionCard: React.FC<Question> = ({
     question,
     answer,
