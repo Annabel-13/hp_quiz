@@ -3,7 +3,7 @@ import { fetchQuizQuestions, QuestionState } from './API';
 import { GlobalStyle, Wrapper } from './App.styles';
 import QuestionCard from './components/QuestionCard';
 import Modal from './components/Modal';
-import VerticalScoreBar from "./components/VerticalScoreBar";
+import cauldron from '../src/images/cauldron.gif'
 
 export type AnswerObj = {
     question: string;
@@ -55,7 +55,9 @@ function App() {
     const nextQuestion = () => {
         const nextQ = number + 1;
         if (nextQ === TOTAL_Q) {
+            setShowModal(true);
             setGameOver(true);
+
         } else {
             setNumber(nextQ);
         }
@@ -66,11 +68,11 @@ function App() {
     };
 
     //  useEffect, gameOver и userAnswers
-    useEffect(() => {
-        if (gameOver && userAnswers.length === TOTAL_Q) {
-            setShowModal(true);
-        }
-    }, [gameOver, userAnswers.length]);
+    // useEffect(() => {
+    //     if (gameOver && nextQ === TOTAL_Q) {
+    //         setShowModal(true);
+    //     }
+    // }, [gameOver, userAnswers]);
 
     return (
         <>
@@ -79,7 +81,7 @@ function App() {
                 <h1>Harry Potter Quiz</h1>
 
                 {/* start button */}
-                {gameOver || userAnswers.length === TOTAL_Q ? (
+                {gameOver ? (
                     <button className="start" onClick={startQuiz}>
                         Start Quiz
                     </button>
@@ -87,7 +89,7 @@ function App() {
 
                 {loading ? <p>Loading questions...</p> : null}
 
-                {/* next question button and card */}
+                 {/*next question button and card*/}
                 {!gameOver && !loading && (
                     <QuestionCard
                         number={number + 1}
@@ -99,12 +101,12 @@ function App() {
                     />
                 )}
 
-                {/* next question */}
-                {!gameOver && userAnswers.length === number + 1 && number !== TOTAL_Q - 1 ? (
+                {!gameOver && userAnswers.length === number + 1 ? (
                     <button className="next" onClick={nextQuestion}>
-                        Next Question
+                        {number === TOTAL_Q - 1 ? 'Finish Quiz' : 'Next Question'}
                     </button>
                 ) : null}
+
 
                 {/* show modal window */}
                 <Modal show={showModal} onClose={closeModal}>
@@ -112,7 +114,7 @@ function App() {
                     <p>
                         Your cauldron cooks for {score} from {TOTAL_Q} points.
                     </p>
-                    <VerticalScoreBar score={score} maxScore={TOTAL_Q} />
+                    <img src={cauldron} alt="Funny animation of cauldron" />
                     <button onClick={closeModal}>Close</button>
                 </Modal>
             </Wrapper>

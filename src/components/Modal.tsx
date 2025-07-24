@@ -28,16 +28,13 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, children }) => {
         };
     }, [show, onClose]);
 
-    if (show) {
+    if (!show) {
         return null;
     }
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content" ref={modalRef}>
-                <button className="modal-close" onClick={onClose}>
-                    &times;
-                </button>
+            <div className="modal-content magic-frame" ref={modalRef}>
                 {children}
             </div>
         </div>

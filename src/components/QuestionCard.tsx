@@ -16,6 +16,7 @@ type Question = {
     totalQuestions: number;
 }
 
+
  // type TextOrString = string | {
  //     text: string;
  //     otherProperties: any;
@@ -51,3 +52,4 @@ const QuestionCard: React.FC<Question> = ({
 
 
 export default QuestionCard;
+
