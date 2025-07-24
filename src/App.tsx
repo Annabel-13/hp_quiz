@@ -67,13 +67,6 @@ function App() {
         setShowModal(false);
     };
 
-    //  useEffect, gameOver и userAnswers
-    // useEffect(() => {
-    //     if (gameOver && nextQ === TOTAL_Q) {
-    //         setShowModal(true);
-    //     }
-    // }, [gameOver, userAnswers]);
-
     return (
         <>
             <GlobalStyle />
